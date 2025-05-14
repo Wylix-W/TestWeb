@@ -7,11 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Montserrat', sans-serif;
       background-color: #f5f5f5;
@@ -22,8 +18,10 @@
     header {
       position: relative;
       height: 100vh;
-      background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
-                  url('https://images.unsplash.com/photo-1600185365173-b3f8a01a7fd5?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('images/pexels-danbee-29701226.jpg');
       color: white;
       display: flex;
       flex-direction: column;
@@ -31,16 +29,10 @@
       align-items: center;
       text-align: center;
       padding: 0 1rem;
+      transition: background-image 1s ease-in-out;
     }
-    header h1 {
-      font-size: 3rem;
-      animation: fadeInDown 1s ease-out forwards;
-    }
-    header p {
-      font-size: 1.2rem;
-      margin-top: 1rem;
-      animation: fadeInUp 1s ease-out forwards;
-    }
+    header h1 { font-size: 3rem; animation: fadeInDown 1s ease-out forwards; }
+    header p { font-size: 1.2rem; margin-top: 1rem; animation: fadeInUp 1s ease-out forwards; }
     nav {
       position: absolute;
       top: 20px;
@@ -68,9 +60,7 @@
       background-color: #d92332;
       transition: 0.3s ease;
     }
-    nav a:hover::after {
-      width: 100%;
-    }
+    nav a:hover::after { width: 100%; }
     section {
       padding: 5rem 2rem;
       max-width: 1100px;
@@ -92,9 +82,7 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.15);
       transition: transform 0.3s ease;
     }
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
+    .gallery img:hover { transform: scale(1.05); }
     .cta {
       display: inline-block;
       background: #d92332;
@@ -106,9 +94,7 @@
       text-decoration: none;
       transition: 0.3s ease;
     }
-    .cta:hover {
-      background: #a31625;
-    }
+    .cta:hover { background: #a31625; }
     .map-container {
       margin-top: 4rem;
       text-align: center;
@@ -136,19 +122,13 @@
       100% { opacity: 1; transform: translateY(0); }
     }
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      nav {
-        flex-wrap: wrap;
-        gap: 1rem;
-        padding: 0.5rem 1rem;
-      }
+      header h1 { font-size: 2rem; }
+      nav { flex-wrap: wrap; gap: 1rem; padding: 0.5rem 1rem; }
     }
   </style>
 </head>
 <body>
-  <header>
+  <header id="hero">
     <nav>
       <a href="#services">Services</a>
       <a href="#realisations">Réalisations</a>
@@ -160,6 +140,13 @@
     <p>Boostez vos performances avec des suspensions sur-mesure</p>
   </header>
 
+  <section id="presentation" data-aos="fade-up">
+    <h2>Bienvenue sur le site officiel de LTMotors Suspension</h2>
+    <p>Artisan / Commerçant passionné basé à Louvigny, je mets tout mon savoir-faire au service de mes clients pour offrir des prestations de qualité, sur-mesure et adaptées à chaque besoin.</p>
+    <p>Que vous soyez à la recherche de préparation de suspension, réparation, d’un devis rapide ou simplement d’inspiration à travers mes réalisations, vous êtes au bon endroit.</p>
+    <p>Découvrez mon univers, mes services et mes tarifs en toute transparence. Et si vous avez la moindre question, je reste à votre écoute pour prévoir un rendez-vous.</p>
+  </section>
+
   <section id="services" data-aos="fade-up">
     <h2>Nos Services</h2>
     <p>Préparation, entretien, personnalisation et réglage de suspensions motocross pour tous niveaux de pratique. Notre expertise optimise votre confort, contrôle et performance.</p>
@@ -167,10 +154,17 @@
 
   <section id="realisations" data-aos="fade-up">
     <h2>Réalisations</h2>
+    <p data-aos="fade-up">Quelques exemples de mes réalisations</p>
+    <p data-aos="fade-up" style="margin-bottom: 2rem;">
+      Parce que chaque projet est unique, je vous invite à découvrir ci-dessous une sélection de mes réalisations.<br>
+      Toutes les prestations sont réalisées avec soin, passion et souci du détail. Que ce soit pour la préparation,
+      l’entretien ou la réparation de suspensions, vous trouverez ici un aperçu concret de la qualité de mon travail.<br>
+      N’hésitez pas à me contacter pour en savoir plus ou obtenir un devis personnalisé.
+    </p>
     <div class="gallery">
-      <img src="https://tse1.mm.bing.net/th?id=OIP.oaj6POeCBZtnufwUgfIktAHaE8&pid=Api" alt="Suspension motocross 1">
-      <img src="https://tse2.mm.bing.net/th?id=OIP.-rt61qu2ycdBY74xY4jynAHaE8&pid=Api" alt="Suspension motocross 2">
-      <img src="https://tse3.mm.bing.net/th?id=OIP.V3Ol1Az3KOCN1RygjaeCQwHaFi&pid=Api" alt="Suspension motocross 3">
+      <img src="images/pexels-danbee-29701229.jpg" alt="Suspension motocross 1">
+      <img src="images/pexels-daniel-43199-217872.jpg" alt="Suspension motocross 2">
+      <img src="images/pexels-michal-hudcovic-903381-2753984.jpg" alt="Suspension motocross 3">
     </div>
   </section>
 
@@ -197,5 +191,20 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init();</script>
+  <script>
+    const hero = document.getElementById('hero');
+    const images = [
+      'images/pexels-danbee-29701226.jpg',
+      'images/pexels-danbee-29701229.jpg',
+      'images/pexels-daniel-43199-217872.jpg',
+      'images/pexels-michal-hudcovic-903381-2753984.jpg',
+      'images/pexels-sergio-cruz-3379164-27471608.jpg'
+    ];
+    let index = 0;
+    setInterval(() => {
+      index = (index + 1) % images.length;
+      hero.style.backgroundImage = `linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('${images[index]}')`;
+    }, 6000);
+  </script>
 </body>
 </html>
