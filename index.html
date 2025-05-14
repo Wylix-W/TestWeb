@@ -36,16 +36,20 @@
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
       background: rgba(0,0,0,0.6);
-      padding: 0.8rem 2rem;
+      padding: 0.8rem 1.5rem;
       border-radius: 30px;
+      max-width: 90vw;
     }
     nav a {
       color: white;
       text-decoration: none;
       font-weight: 600;
       position: relative;
+      white-space: nowrap;
     }
     nav a::after {
       content: '';
@@ -144,31 +148,33 @@
       100% { opacity: 1; transform: translateY(0); }
     }
     @media (max-width: 768px) {
-  header {
-    height: auto;
-    padding: 4rem 1rem 6rem;
-  }
-  header h1 {
-    font-size: 1.8rem;
-    text-align: center;
-  }
-  header p {
-    font-size: 1rem;
-    text-align: center;
-  }
-  nav {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 1rem;
-    top: 10px;
-    width: 90%;
-  }
-  nav a {
-    font-size: 1rem;
-  }
-}
-      nav { flex-wrap: wrap; gap: 1rem; padding: 0.5rem 1rem; }
+      header {
+        height: auto;
+        padding: 5rem 1rem 6rem;
+        text-align: center;
+      }
+      header h1 {
+        font-size: 2rem;
+        text-align: center;
+      }
+      header p {
+        font-size: 1rem;
+        text-align: center;
+      }
+      nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem;
+        top: 10px;
+        width: 90%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      nav a {
+        font-size: 1rem;
+        text-align: center;
+      }
     }
   </style>
 </head>
