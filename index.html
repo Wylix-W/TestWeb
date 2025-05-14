@@ -18,10 +18,7 @@
     header {
       position: relative;
       height: 100vh;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('images/pexels-danbee-29701226.jpg');
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)), url('images/pexels-danbee-29701226.jpg') center/cover no-repeat;
       color: white;
       display: flex;
       flex-direction: column;
@@ -29,7 +26,7 @@
       align-items: center;
       text-align: center;
       padding: 0 1rem;
-      transition: background-image 1s ease-in-out;
+      animation: fadeIn 2s ease-in-out forwards;
     }
     header h1 { font-size: 3rem; animation: fadeInDown 1s ease-out forwards; }
     header p { font-size: 1.2rem; margin-top: 1rem; animation: fadeInUp 1s ease-out forwards; }
@@ -69,6 +66,31 @@
     h2 {
       font-size: 2rem;
       color: #d92332;
+      margin-bottom: 1rem;
+    }
+    .intro {
+      text-align: center;
+      animation: fadeInUp 1s ease-out forwards;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .service-card {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+    }
+    .service-card img {
+      width: 60px;
       margin-bottom: 1rem;
     }
     .gallery {
@@ -140,7 +162,7 @@
     <p>Boostez vos performances avec des suspensions sur-mesure</p>
   </header>
 
-  <section id="presentation" data-aos="fade-up">
+  <section id="presentation" data-aos="fade-up" class="intro">
     <h2>Bienvenue sur le site officiel de LTMotors Suspension</h2>
     <p>Artisan / Commerçant passionné basé à Louvigny, je mets tout mon savoir-faire au service de mes clients pour offrir des prestations de qualité, sur-mesure et adaptées à chaque besoin.</p>
     <p>Que vous soyez à la recherche de préparation de suspension, réparation, d’un devis rapide ou simplement d’inspiration à travers mes réalisations, vous êtes au bon endroit.</p>
@@ -149,7 +171,23 @@
 
   <section id="services" data-aos="fade-up">
     <h2>Nos Services</h2>
-    <p>Préparation, entretien, personnalisation et réglage de suspensions motocross pour tous niveaux de pratique. Notre expertise optimise votre confort, contrôle et performance.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/858/858454.png" alt="Préparation">
+        <h3>Préparation</h3>
+        <p>Préparation de suspensions pour améliorer performance et confort selon votre pratique.</p>
+      </div>
+      <div class="service-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3771/3771611.png" alt="Entretien">
+        <h3>Entretien</h3>
+        <p>Entretien régulier de vos fourches et amortisseurs avec des produits de qualité.</p>
+      </div>
+      <div class="service-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="Réglage">
+        <h3>Réglage</h3>
+        <p>Réglage personnalisé pour optimiser vos suspensions en fonction de votre pilotage.</p>
+      </div>
+    </div>
   </section>
 
   <section id="realisations" data-aos="fade-up">
@@ -162,9 +200,9 @@
       N’hésitez pas à me contacter pour en savoir plus ou obtenir un devis personnalisé.
     </p>
     <div class="gallery">
-      <img src="images/pexels-danbee-29701229.jpg" alt="Suspension motocross 1">
-      <img src="images/pexels-daniel-43199-217872.jpg" alt="Suspension motocross 2">
-      <img src="images/pexels-michal-hudcovic-903381-2753984.jpg" alt="Suspension motocross 3">
+      <img src="https://tse1.mm.bing.net/th?id=OIP.oaj6POeCBZtnufwUgfIktAHaE8&pid=Api" alt="Suspension motocross 1">
+      <img src="https://tse2.mm.bing.net/th?id=OIP.-rt61qu2ycdBY74xY4jynAHaE8&pid=Api" alt="Suspension motocross 2">
+      <img src="https://tse3.mm.bing.net/th?id=OIP.V3Ol1Az3KOCN1RygjaeCQwHaFi&pid=Api" alt="Suspension motocross 3">
     </div>
   </section>
 
