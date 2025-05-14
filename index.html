@@ -4,158 +4,166 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LTMotors Suspension</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
     body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background-color: #f2f2f2;
-      color: #333;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f5f5f5;
+      color: #222;
       cursor: url('https://cdn-icons-png.flaticon.com/512/854/854894.png') 16 16, auto;
       scroll-behavior: smooth;
     }
     header {
-      background: linear-gradient(135deg, #0f0f0f, #3d3d3d);
+      position: relative;
+      height: 100vh;
+      background: linear-gradient(to right, #0f0f0f80, #1f1f1f80), url('https://images.unsplash.com/photo-1562007901-b7b999aa0b8e?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
       color: white;
-      padding: 4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
+      padding: 0 1rem;
+    }
+    header h1 {
+      font-size: 3rem;
+      animation: fadeInDown 1s ease-out forwards;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      animation: fadeInUp 1s ease-out forwards;
     }
     nav {
-      margin-top: 2rem;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 2rem;
+      background: rgba(0,0,0,0.6);
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
     }
     nav a {
       color: white;
-      margin: 0 1.2rem;
       text-decoration: none;
       font-weight: 600;
-      font-size: 1.1rem;
       position: relative;
     }
     nav a::after {
       content: '';
       position: absolute;
+      width: 0;
+      height: 2px;
       bottom: -4px;
       left: 0;
-      width: 100%;
-      height: 2px;
-      background: #d92332;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
+      background-color: #d92332;
+      transition: 0.3s ease;
     }
     nav a:hover::after {
-      transform: scaleX(1);
+      width: 100%;
     }
     section {
       padding: 5rem 2rem;
-      max-width: 1200px;
+      max-width: 1100px;
       margin: auto;
     }
     h2 {
-      color: #d92332;
       font-size: 2rem;
-      margin-bottom: 1.5rem;
-      border-left: 5px solid #d92332;
-      padding-left: 0.75rem;
-    }
-    .cta {
-      display: inline-block;
-      background-color: #d92332;
-      color: white;
-      padding: 1rem 2rem;
-      margin-top: 2rem;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-    .cta:hover {
-      background-color: #a31625;
-      transform: scale(1.05);
+      color: #d92332;
+      margin-bottom: 1rem;
     }
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 2rem;
-      margin-top: 2rem;
     }
     .gallery img {
       width: 100%;
-      height: auto;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
       transition: transform 0.3s ease;
     }
     .gallery img:hover {
-      transform: scale(1.03);
+      transform: scale(1.05);
     }
-    ul {
-      list-style: none;
-      padding-left: 0;
-      line-height: 1.8;
-    }
-    ul li::before {
-      content: "\2713\0020";
-      color: #d92332;
+    .cta {
+      display: inline-block;
+      background: #d92332;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      margin-top: 2rem;
       font-weight: bold;
-      margin-right: 0.5rem;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+    .cta:hover {
+      background: #a31625;
     }
     footer {
-      background-color: #111;
+      background: #111;
       color: white;
       text-align: center;
       padding: 3rem 2rem;
     }
-    footer p {
-      margin: 0;
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      nav {
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding: 0.5rem 1rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>LTMotors Suspension</h1>
-    <p>Préparation & Réparation de Suspensions Motocross</p>
     <nav>
       <a href="#services">Services</a>
       <a href="#realisations">Réalisations</a>
-      <a href="#tarifs">Tarifs</a>
+      <a href="tarifs.html">Tarifs</a>
       <a href="#contact">Contact</a>
       <a href="rendez-vous.html">Rendez-vous</a>
     </nav>
+    <h1>LTMotors Suspension</h1>
+    <p>Boostez vos performances avec des suspensions sur-mesure</p>
   </header>
 
-  <section id="services">
+  <section id="services" data-aos="fade-up">
     <h2>Nos Services</h2>
-    <p>Nous sommes spécialisés dans la <strong>préparation de suspensions</strong> pour motocross, l’<strong>entretien complet</strong> et les <strong>réparations</strong> de motos. Nos services sont adaptés à votre pratique (enduro, cross, piste) avec un accompagnement personnalisé.</p>
+    <p>Préparation, entretien, personnalisation et réglage de suspensions motocross pour tous niveaux de pratique. Notre expertise optimise votre confort, contrôle et performance.</p>
   </section>
 
-  <section id="realisations">
+  <section id="realisations" data-aos="fade-up">
     <h2>Réalisations</h2>
-    <p>Voici quelques exemples de projets réalisés dans notre atelier :</p>
     <div class="gallery">
       <img src="https://tse1.mm.bing.net/th?id=OIP.oaj6POeCBZtnufwUgfIktAHaE8&pid=Api" alt="Suspension motocross 1">
       <img src="https://tse2.mm.bing.net/th?id=OIP.-rt61qu2ycdBY74xY4jynAHaE8&pid=Api" alt="Suspension motocross 2">
       <img src="https://tse3.mm.bing.net/th?id=OIP.V3Ol1Az3KOCN1RygjaeCQwHaFi&pid=Api" alt="Suspension motocross 3">
-      <img src="https://tse2.mm.bing.net/th?id=OIP.Cc0grOKGZ1RgPckm4_swCAHaIc&pid=Api" alt="Suspension motocross 4">
     </div>
   </section>
 
-  <section id="tarifs">
-    <h2>Tarifs</h2>
-    <p>Nos prestations sont sur-mesure. Voici quelques tarifs indicatifs :</p>
-    <ul>
-      <li>Révision fourche complète : à partir de 120€</li>
-      <li>Préparation personnalisée fourche/amortisseur : sur devis</li>
-      <li>Réglage suspension piste/enduro : à partir de 80€</li>
-    </ul>
-  </section>
-
-  <section id="contact">
-    <h2>Contact & Prise de Rendez-vous</h2>
-    <p>Pour toute demande d’information ou prise de rendez-vous, contactez-nous :</p>
+  <section id="contact" data-aos="fade-up">
+    <h2>Contact & Infos</h2>
+    <p>Une question ? Besoin d’un devis ? Contactez-nous :</p>
     <ul>
       <li>Email : <a href="mailto:contact@ltmotors.fr">contact@ltmotors.fr</a></li>
       <li>Téléphone : 06 00 00 00 00</li>
@@ -166,6 +174,8 @@
   <footer>
     <p>&copy; 2025 LTMotors Suspension — Tous droits réservés</p>
   </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
 </body>
 </html>
-
