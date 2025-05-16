@@ -10,59 +10,71 @@
     html, body {
       height: 100%;
       font-family: 'Montserrat', sans-serif;
-      background: #0a0a0a;
+      background: #141414;
       overflow-x: hidden;
       scroll-behavior: smooth;
       color: white;
     }
+
     body::before {
       content: '';
       position: fixed;
       top: 0;
       left: 0;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(-45deg, #ff6b6b, #ffa502, #3742fa, #ff4757);
-      background-size: 400% 400%;
-      animation: gradient 20s ease infinite;
-      z-index: -2;
-      opacity: 0.2;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 70, 70, 0.4), rgba(0, 0, 0, 0.9));
+      transition: background 0.05s linear;
+      z-index: -1;
     }
-    .trail {
+
+    .trail-line {
       position: fixed;
-      width: 20px;
-      height: 20px;
-      background: radial-gradient(circle, rgba(255,80,80,0.9), rgba(255,80,80,0));
-      border-radius: 50%;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       pointer-events: none;
-      z-index: 1000;
-      transform: translate(-50%, -50%);
+      z-index: 999;
     }
-    @keyframes gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+
+    svg {
+      width: 100%;
+      height: 100%;
     }
+
+    path {
+      fill: none;
+      stroke: rgba(255, 80, 80, 0.7);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
     .container {
       max-width: 1200px;
       margin: auto;
       padding: 5rem 2rem;
     }
+
     h1 {
       text-align: center;
       font-size: 3rem;
       margin-bottom: 3rem;
     }
+
     section {
       margin-bottom: 6rem;
       transition: all 0.6s ease;
     }
+
     h2 {
       font-size: 2rem;
-      color: #ffa502;
+      color: #ff2f2f;
       margin-bottom: 1rem;
       text-align: center;
     }
+
     p.description {
       text-align: center;
       max-width: 800px;
@@ -70,26 +82,30 @@
       font-size: 1.1rem;
       line-height: 1.6;
     }
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
     }
+
     .gallery img {
       width: 100%;
       border-radius: 12px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.5);
       transition: transform 0.3s, box-shadow 0.3s;
     }
+
     .gallery img:hover {
       transform: scale(1.05);
       box-shadow: 0 12px 30px rgba(255,165,0,0.6);
     }
+
     .btn-retour {
       display: block;
       text-align: center;
       margin-top: 3rem;
-      color: #ffa502;
+      color: #ff2f2f;
       text-decoration: none;
       font-weight: bold;
       font-size: 1.1rem;
@@ -97,6 +113,10 @@
   </style>
 </head>
 <body>
+  <div class="trail-line">
+    <svg><path id="trail-path" d="" /></svg>
+  </div>
+
   <div class="container">
     <h1>Nos Réalisations</h1>
 
@@ -134,14 +154,21 @@
   </div>
 
   <script>
-    // Traînée lumineuse qui suit la souris
-    document.addEventListener('mousemove', e => {
-      const trail = document.createElement('div');
-      trail.classList.add('trail');
-      trail.style.left = e.pageX + 'px';
-      trail.style.top = e.pageY + 'px';
-      document.body.appendChild(trail);
-      setTimeout(() => trail.remove(), 500);
+    const body = document.body;
+    const trailPath = document.getElementById("trail-path");
+    let points = [];
+
+    document.addEventListener("mousemove", (e) => {
+      const xPercent = (e.clientX / window.innerWidth) * 100;
+      const yPercent = (e.clientY / window.innerHeight) * 100;
+      body.style.setProperty("--x", `${xPercent}%`);
+      body.style.setProperty("--y", `${yPercent}%`);
+
+      points.push({ x: e.clientX, y: e.clientY });
+      if (points.length > 60) points.shift();
+
+      let d = "M" + points.map(p => `${p.x},${p.y}`).join(" L");
+      trailPath.setAttribute("d", d);
     });
   </script>
 </body>
