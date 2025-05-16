@@ -8,27 +8,37 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
-      font-family: 'Montserrat', sans-serif;
       height: 100%;
-      background: radial-gradient(circle at center, #0f2027, #203a43, #2c5364);
+      font-family: 'Montserrat', sans-serif;
+      background: #0a0a0a;
       overflow-x: hidden;
       scroll-behavior: smooth;
       color: white;
     }
     body::before {
-      content: "";
+      content: '';
       position: fixed;
       top: 0;
       left: 0;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, #ff6b6b, #ffa502, #5352ed, #ff4757);
+      background: linear-gradient(-45deg, #ff6b6b, #ffa502, #3742fa, #ff4757);
       background-size: 400% 400%;
-      animation: gradientMove 30s ease infinite;
-      z-index: -1;
+      animation: gradient 20s ease infinite;
+      z-index: -2;
       opacity: 0.2;
     }
-    @keyframes gradientMove {
+    .trail {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, rgba(255,80,80,0.9), rgba(255,80,80,0));
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 1000;
+      transform: translate(-50%, -50%);
+    }
+    @keyframes gradient {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
@@ -36,27 +46,27 @@
     .container {
       max-width: 1200px;
       margin: auto;
-      padding: 4rem 2rem;
+      padding: 5rem 2rem;
     }
     h1 {
       text-align: center;
-      font-size: 2.8rem;
-      margin-bottom: 2rem;
+      font-size: 3rem;
+      margin-bottom: 3rem;
     }
     section {
       margin-bottom: 6rem;
+      transition: all 0.6s ease;
     }
     h2 {
       font-size: 2rem;
+      color: #ffa502;
       margin-bottom: 1rem;
-      color: #ff4757;
       text-align: center;
     }
     p.description {
       text-align: center;
-      max-width: 700px;
-      margin: auto;
-      margin-bottom: 2rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
       font-size: 1.1rem;
       line-height: 1.6;
     }
@@ -68,18 +78,18 @@
     .gallery img {
       width: 100%;
       border-radius: 12px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
       transition: transform 0.3s, box-shadow 0.3s;
     }
     .gallery img:hover {
       transform: scale(1.05);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 12px 30px rgba(255,165,0,0.6);
     }
     .btn-retour {
       display: block;
       text-align: center;
-      margin-top: 2rem;
-      color: white;
+      margin-top: 3rem;
+      color: #ffa502;
       text-decoration: none;
       font-weight: bold;
       font-size: 1.1rem;
@@ -124,11 +134,14 @@
   </div>
 
   <script>
-    document.body.addEventListener('mousemove', e => {
-      const x = e.clientX / window.innerWidth - 0.5;
-      const y = e.clientY / window.innerHeight - 0.5;
-      document.body.style.setProperty('--x', x);
-      document.body.style.setProperty('--y', y);
+    // Traînée lumineuse qui suit la souris
+    document.addEventListener('mousemove', e => {
+      const trail = document.createElement('div');
+      trail.classList.add('trail');
+      trail.style.left = e.pageX + 'px';
+      trail.style.top = e.pageY + 'px';
+      document.body.appendChild(trail);
+      setTimeout(() => trail.remove(), 500);
     });
   </script>
 </body>
