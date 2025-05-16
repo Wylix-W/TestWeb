@@ -6,66 +6,28 @@
   <title>Réalisations - LTMotors Suspension</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
+      margin: 0;
+      padding: 0;
       height: 100%;
-      font-family: 'Montserrat', sans-serif;
-      background: #141414;
       overflow-x: hidden;
-      scroll-behavior: smooth;
+      font-family: 'Montserrat', sans-serif;
       color: white;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 70, 70, 0.4), rgba(0, 0, 0, 0.9));
-      transition: background 0.05s linear;
-      z-index: -1;
-    }
-
-    .trail-line {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 999;
-    }
-
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    path {
-      fill: none;
-      stroke: rgba(255, 80, 80, 0.7);
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 5rem 2rem;
+      background-repeat: no-repeat;
+      background-blend-mode: screen;
+      transition: background 0.1s linear;
     }
 
     h1 {
       text-align: center;
       font-size: 3rem;
-      margin-bottom: 3rem;
+      margin: 3rem auto 2rem;
     }
 
     section {
-      margin-bottom: 6rem;
-      transition: all 0.6s ease;
+      max-width: 1200px;
+      margin: 0 auto 6rem;
+      padding: 0 2rem;
     }
 
     h2 {
@@ -98,13 +60,13 @@
 
     .gallery img:hover {
       transform: scale(1.05);
-      box-shadow: 0 12px 30px rgba(255,165,0,0.6);
+      box-shadow: 0 12px 30px rgba(139, 0, 0, 0.7);
     }
 
     .btn-retour {
       display: block;
       text-align: center;
-      margin-top: 3rem;
+      margin: 3rem auto;
       color: #ff2f2f;
       text-decoration: none;
       font-weight: bold;
@@ -113,63 +75,66 @@
   </style>
 </head>
 <body>
-  <div class="trail-line">
-    <svg><path id="trail-path" d="" /></svg>
-  </div>
+  <h1>Nos Réalisations</h1>
 
-  <div class="container">
-    <h1>Nos Réalisations</h1>
+  <section id="preparation">
+    <h2>Suspensions Préparation Moto-Cross</h2>
+    <p class="description">Découvrez une sélection de suspensions optimisées pour la compétition, alliant performance, technicité et savoir-faire.</p>
+    <div class="gallery">
+      <img src="https://via.placeholder.com/400x250?text=Préparation+1" alt="Préparation 1">
+      <img src="https://via.placeholder.com/400x250?text=Préparation+2" alt="Préparation 2">
+      <img src="https://via.placeholder.com/400x250?text=Préparation+3" alt="Préparation 3">
+    </div>
+  </section>
 
-    <section id="preparation">
-      <h2>Suspensions Préparation Moto-Cross</h2>
-      <p class="description">Découvrez une sélection de suspensions optimisées pour la compétition, alliant performance, technicité et savoir-faire.</p>
-      <div class="gallery">
-        <img src="https://via.placeholder.com/400x250?text=Préparation+1" alt="Préparation 1">
-        <img src="https://via.placeholder.com/400x250?text=Préparation+2" alt="Préparation 2">
-        <img src="https://via.placeholder.com/400x250?text=Préparation+3" alt="Préparation 3">
-      </div>
-    </section>
+  <section id="reparation">
+    <h2>Réparation Moto-Cross</h2>
+    <p class="description">Exemples concrets de réparations réalisées avec précision, garantissant sécurité et efficacité sur toutes les pistes.</p>
+    <div class="gallery">
+      <img src="https://via.placeholder.com/400x250?text=Réparation+1" alt="Réparation 1">
+      <img src="https://via.placeholder.com/400x250?text=Réparation+2" alt="Réparation 2">
+      <img src="https://via.placeholder.com/400x250?text=Réparation+3" alt="Réparation 3">
+    </div>
+  </section>
 
-    <section id="reparation">
-      <h2>Réparation Moto-Cross</h2>
-      <p class="description">Exemples concrets de réparations réalisées avec précision, garantissant sécurité et efficacité sur toutes les pistes.</p>
-      <div class="gallery">
-        <img src="https://via.placeholder.com/400x250?text=Réparation+1" alt="Réparation 1">
-        <img src="https://via.placeholder.com/400x250?text=Réparation+2" alt="Réparation 2">
-        <img src="https://via.placeholder.com/400x250?text=Réparation+3" alt="Réparation 3">
-      </div>
-    </section>
+  <section id="autres">
+    <h2>Autres Services</h2>
+    <p class="description">Quelques visuels supplémentaires illustrant notre gamme étendue de prestations sur mesure.</p>
+    <div class="gallery">
+      <img src="https://via.placeholder.com/400x250?text=Autres+1" alt="Autres 1">
+      <img src="https://via.placeholder.com/400x250?text=Autres+2" alt="Autres 2">
+      <img src="https://via.placeholder.com/400x250?text=Autres+3" alt="Autres 3">
+    </div>
+  </section>
 
-    <section id="autres">
-      <h2>Autres Services</h2>
-      <p class="description">Quelques visuels supplémentaires illustrant notre gamme étendue de prestations sur mesure.</p>
-      <div class="gallery">
-        <img src="https://via.placeholder.com/400x250?text=Autres+1" alt="Autres 1">
-        <img src="https://via.placeholder.com/400x250?text=Autres+2" alt="Autres 2">
-        <img src="https://via.placeholder.com/400x250?text=Autres+3" alt="Autres 3">
-      </div>
-    </section>
-
-    <a class="btn-retour" href="index.html">← Retour à l'accueil</a>
-  </div>
+  <a class="btn-retour" href="index.html">← Retour à l'accueil</a>
 
   <script>
-    const body = document.body;
-    const trailPath = document.getElementById("trail-path");
-    let points = [];
+    let mouseX = 50;
+    let mouseY = 50;
 
     document.addEventListener("mousemove", (e) => {
-      const xPercent = (e.clientX / window.innerWidth) * 100;
-      const yPercent = (e.clientY / window.innerHeight) * 100;
-      body.style.setProperty("--x", `${xPercent}%`);
-      body.style.setProperty("--y", `${yPercent}%`);
-
-      points.push({ x: e.clientX, y: e.clientY });
-      if (points.length > 60) points.shift();
-
-      let d = "M" + points.map(p => `${p.x},${p.y}`).join(" L");
-      trailPath.setAttribute("d", d);
+      mouseX = (e.clientX / window.innerWidth) * 100;
+      mouseY = (e.clientY / window.innerHeight) * 100;
     });
+
+    function animateBackground() {
+      const currentX = parseFloat(document.body.dataset.x || 50);
+      const currentY = parseFloat(document.body.dataset.y || 50);
+
+      const lerp = (a, b, t) => a + (b - a) * t;
+      const smoothX = lerp(currentX, mouseX, 0.08);
+      const smoothY = lerp(currentY, mouseY, 0.08);
+
+      document.body.dataset.x = smoothX;
+      document.body.dataset.y = smoothY;
+
+      document.body.style.background = `radial-gradient(circle 150px at ${smoothX}% ${smoothY}%, #ff0000, #1e1e2f),
+                                        radial-gradient(circle 350px at ${smoothX}% ${smoothY}%, rgba(255, 0, 0, 0.2), transparent)`;
+      requestAnimationFrame(animateBackground);
+    }
+
+    animateBackground();
   </script>
 </body>
 </html>
