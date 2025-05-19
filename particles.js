@@ -8,23 +8,32 @@ document.addEventListener("DOMContentLoaded", () => {
   let width, height;
   let particles = [];
   let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  let currentCount = 0;
+  const targetCount = 300;
 
   function resizeCanvas() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
   }
 
-  function createParticles(count) {
-    particles = [];
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        radius: Math.random() * 1.5 + 0.5,
-        speedX: Math.random() * 0.6 - 0.3,
-        speedY: Math.random() * 0.6 - 0.3,
-        alpha: Math.random() * 0.5 + 0.4
-      });
+  function addParticle() {
+    particles.push({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: Math.random() * 1.5 + 0.5,
+      speedX: Math.random() * 0.6 - 0.3,
+      speedY: Math.random() * 0.6 - 0.3,
+      baseSpeedX: Math.random() * 0.6 - 0.3, // pour oscillation
+      baseSpeedY: Math.random() * 0.6 - 0.3,
+      alpha: Math.random() * 0.5 + 0.4
+    });
+  }
+
+  function gradualCreate() {
+    if (currentCount < targetCount) {
+      addParticle();
+      currentCount++;
+      requestAnimationFrame(gradualCreate);
     }
   }
 
@@ -38,12 +47,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const force = Math.max(100 - dist, 0);
       const angle = Math.atan2(dy, dx);
 
-      // FUITE : on pousse les particules dans la direction opposée à la souris
       const fx = Math.cos(angle) * force * 0.02;
       const fy = Math.sin(angle) * force * 0.02;
 
       p.speedX -= fx;
       p.speedY -= fy;
+
+      // Oscillation douce autour de sa vitesse initiale
+      p.speedX += Math.sin(Date.now() * 0.001 + p.x) * 0.01;
+      p.speedY += Math.cos(Date.now() * 0.001 + p.y) * 0.01;
 
       p.x += p.speedX;
       p.y += p.speedY;
@@ -60,12 +72,30 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.fill();
     });
 
+    // Lignes entre particules proches
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 100) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(255,255,255,${1 - dist / 100})`;
+          ctx.stroke();
+        }
+      }
+    }
+
     requestAnimationFrame(animateParticles);
   }
 
   window.addEventListener('resize', () => {
     resizeCanvas();
-    createParticles(300);
+    particles = [];
+    currentCount = 0;
+    gradualCreate();
   });
 
   window.addEventListener('mousemove', e => {
@@ -74,6 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   resizeCanvas();
-  createParticles(300);
+  gradualCreate();
   animateParticles();
 });
