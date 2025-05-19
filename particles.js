@@ -1,4 +1,5 @@
 console.log("✅ particles.js chargé !");
+
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById('particles');
   if (!canvas) return;
@@ -13,13 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function createParticles(count) {
+    particles = [];
     for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
         radius: Math.random() * 1.5 + 0.5,
-        speedX: Math.random() * 0.5 - 0.25,
-        speedY: Math.random() * 0.5 - 0.25,
+        speedX: Math.random() * 0.6 - 0.3,
+        speedY: Math.random() * 0.6 - 0.3,
         alpha: Math.random() * 0.5 + 0.3
       });
     }
@@ -27,14 +29,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function animateParticles() {
     ctx.clearRect(0, 0, width, height);
+
+    // Dessine le halo lumineux autour de la souris
+    const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 100);
+    gradient.addColorStop(0, 'rgba(255, 47, 47, 0.4)');
+    gradient.addColorStop(1, 'rgba(255, 47, 47, 0)');
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(mouse.x, mouse.y, 100, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Particules
     particles.forEach(p => {
       let dx = p.x - mouse.x;
       let dy = p.y - mouse.y;
       let dist = Math.sqrt(dx * dx + dy * dy);
-      let force = Math.max(100 - dist, 0);
+      let force = Math.max(120 - dist, 0);
       let angle = Math.atan2(dy, dx);
-      let fx = Math.cos(angle) * force * 0.02;
-      let fy = Math.sin(angle) * force * 0.02;
+      let fx = Math.cos(angle) * force * 0.015;
+      let fy = Math.sin(angle) * force * 0.015;
 
       p.speedX -= fx;
       p.speedY -= fy;
@@ -50,19 +63,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${p.alpha})`;
+      ctx.fillStyle = `rgba(255, 255, 255, ${p.alpha})`;
       ctx.fill();
     });
+
     requestAnimationFrame(animateParticles);
   }
 
-  window.addEventListener('resize', resizeCanvas);
+  window.addEventListener('resize', () => {
+    resizeCanvas();
+    createParticles(150); // densité de particules ajustée
+  });
+
   window.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
   });
 
   resizeCanvas();
-  createParticles(100);
+  createParticles(150);
   animateParticles();
 });
