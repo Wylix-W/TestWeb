@@ -1,26 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
   const placeholder = document.getElementById("navbar-placeholder");
-  if (placeholder) {
-    fetch("navbar.html")
-      .then(response => response.text())
-      .then(data => {
-        placeholder.innerHTML = data;
+  if (!placeholder) return;
 
-        // Script menu burger
-        const toggleScript = document.createElement("script");
-        toggleScript.innerHTML = `
-          function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-          }
-        `;
-        document.body.appendChild(toggleScript);
+  fetch("navbar.html")
+    .then(response => response.text())
+    .then(data => {
+      placeholder.innerHTML = data;
 
-        // ✅ Re-forcer le CSS : on ajoute une classe après injection
-        const links = placeholder.querySelectorAll("nav a");
-        links.forEach(link => {
-          link.classList.add("navlink"); // optionnel
+      // Activer le bouton burger une fois le HTML injecté
+      const toggleBtn = placeholder.querySelector(".menu-toggle");
+      const navLinks = placeholder.querySelector("#navLinks");
+
+      if (toggleBtn && navLinks) {
+        toggleBtn.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
         });
-      })
-      .catch(err => console.error("Erreur de chargement de la navbar :", err));
-  }
+      }
+
+      // ✅ Appliquer classe CSS à chaque lien pour le style hover ::after
+      const links = placeholder.querySelectorAll("nav a");
+      links.forEach(link => {
+        link.classList.add("navlink");
+      });
+    })
+    .catch(err => console.error("Erreur de chargement de la navbar :", err));
 });
