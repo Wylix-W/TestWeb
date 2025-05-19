@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
       x: Math.random() * width,
       y: Math.random() * height,
       radius: Math.random() * 1.5 + 0.5,
-      speedX: (Math.random() - 0.5) * 0.6, // mouvement fluide
-      speedY: (Math.random() - 0.5) * 0.6,
+      speedX: (Math.random() - 0.5) * 0.3,  // vitesse lente
+      speedY: (Math.random() - 0.5) * 0.3,
       alpha: Math.random() * 0.5 + 0.4
     });
   }
@@ -39,24 +39,30 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.clearRect(0, 0, width, height);
 
     particles.forEach(p => {
+      // Effet de répulsion fluide autour de la souris
       const dx = mouse.x - p.x;
       const dy = mouse.y - p.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
       const force = Math.max(100 - dist, 0);
       const angle = Math.atan2(dy, dx);
 
-      const fx = Math.cos(angle) * force * 0.015;
-      const fy = Math.sin(angle) * force * 0.015;
+      const fx = Math.cos(angle) * force * 0.01;
+      const fy = Math.sin(angle) * force * 0.01;
 
       p.speedX -= fx;
       p.speedY -= fy;
 
+      // Mise à jour position
       p.x += p.speedX;
       p.y += p.speedY;
 
-      // rebond aux bords
-      if (p.x < 0 || p.x > width) p.speedX *= -1;
-      if (p.y < 0 || p.y > height) p.speedY *= -1;
+      // Friction douce (amortissement)
+      p.speedX *= 0.98;
+      p.speedY *= 0.98;
+
+      // Rebond fluide (comme un mur invisible qui les empêche de sortir)
+      if (p.x <= 0 || p.x >= width) p.speedX *= -1;
+      if (p.y <= 0 || p.y >= height) p.speedY *= -1;
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
@@ -64,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.fill();
     });
 
-    // lignes entre particules proches
+    // Lignes entre particules proches
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
