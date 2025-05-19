@@ -22,12 +22,11 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: -1;
+      z-index: 1;
+      pointer-events: none;
+      background: rgba(255, 255, 255, 0.05); /* temporairement visible */
     }
 
-    body > *:not(canvas) {
-      position: relative;
-      z-index: 2;
     }
 
     h1 {
@@ -84,6 +83,12 @@
       font-weight: bold;
       font-size: 1.1rem;
     }
+    body > *:not(canvas) {
+      position: relative;
+      z-index: 2;
+    }
+
+
   </style>
 </head>
 <body>
@@ -123,6 +128,7 @@
 
   <a class="btn-retour" href="index.html">← Retour à l'accueil</a>
 
+  <!-- ✅ Le script externe est correctement intégré ici -->
   <script src="particles.js"></script>
 </body>
 </html>
