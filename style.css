@@ -1,39 +1,43 @@
-/* === NAVBAR PRINCIPALE === */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  max-width: 100vw;
   background: rgba(0, 0, 0, 0.7);
   padding: 1rem 2rem;
   z-index: 1000;
+
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
-/* Logo à gauche */
 .navbar .logo {
   font-size: 1.5rem;
   font-weight: bold;
   color: white;
+  white-space: nowrap;
 }
 
-/* Menu horizontal à droite */
 .navbar nav {
   display: flex;
   gap: 1.5rem;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
-/* Liens du menu */
 .navbar nav a {
   color: white;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 600;
   position: relative;
+  white-space: nowrap;
 }
 
-/* Soulignement animé au survol */
 .navbar nav a::after {
   content: '';
   position: absolute;
@@ -49,7 +53,6 @@
   width: 100%;
 }
 
-/* Icône menu burger (masqué par défaut) */
 .menu-toggle {
   display: none;
   font-size: 1.8rem;
@@ -57,7 +60,6 @@
   cursor: pointer;
 }
 
-/* === Responsive : affichage burger sur mobile === */
 @media (max-width: 768px) {
   .navbar nav {
     position: absolute;
