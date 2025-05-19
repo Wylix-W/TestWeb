@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Réalisations - LTMotors Suspension</title>
+  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     html, body {
@@ -23,17 +23,19 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: 1;
+      z-index: 0;
       pointer-events: none;
-      background: rgba(255, 255, 255, 0.05); /* temporairement visible */
     }
 
+    body > *:not(canvas) {
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
       text-align: center;
       font-size: 3rem;
-      margin: 3rem auto 2rem;
+      margin: 6rem auto 2rem;
     }
 
     section {
@@ -84,17 +86,23 @@
       font-weight: bold;
       font-size: 1.1rem;
     }
-    body > *:not(canvas) {
-      position: relative;
-      z-index: 1;
-    }
-
-
   </style>
 </head>
 <body>
   <canvas id="particles"></canvas>
-  <div id="navbar-placeholder"></div> 
+
+  <!-- ✅ NAVBAR EN DUR -->
+  <div class="navbar">
+    <div class="logo">LTMotors</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav id="navLinks">
+      <a href="index.html#services">Services</a>
+      <a href="realisations.html">Réalisations</a>
+      <a href="tarifs.html">Tarifs</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="rendez-vous.html">Rendez-vous</a>
+    </nav>
+  </div>
 
   <h1>Nos Réalisations</h1>
 
@@ -129,8 +137,12 @@
   </section>
 
   <a class="btn-retour" href="index.html">← Retour à l'accueil</a>
-  <script src="navbar.js"></script>
-  <!-- ✅ Le script externe est correctement intégré ici -->
+
   <script src="particles.js"></script>
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('active');
+    }
+  </script>
 </body>
 </html>
