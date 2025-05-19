@@ -183,17 +183,7 @@
   </style>
 </head>
 <body>
-  <div class="navbar">
-    <div class="logo">LTMotors</div>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <nav id="navLinks">
-      <a href="#services">Services</a>
-      <a href="realisations.html">Réalisations</a>
-      <a href="tarifs.html">Tarifs</a>
-      <a href="#contact">Contact</a>
-      <a href="rendez-vous.html">Rendez-vous</a>
-    </nav>
-  </div>
+  <div id="navbar-placeholder"></div>
 
   <header id="hero">
     <h1>LTMotors Suspension</h1>
@@ -201,15 +191,11 @@
     <a href="rendez-vous.html" class="cta-btn">Prendre rendez-vous</a>
   </header>
 
-  <!-- Le reste de ton contenu (sections, services, réalisations, etc.) reste inchangé -->
-
   <section id="presentation" class="intro">
     <h2>Bienvenue sur le site officiel de LTMotors Suspension</h2>
     <p>Artisan / Commerçant passionné basé à Louvigny, je mets tout mon savoir-faire au service de mes clients pour offrir des prestations de qualité, sur-mesure et adaptées à chaque besoin.</p>
     <p>Que vous soyez à la recherche de préparation de suspension, réparation, d’un devis rapide ou simplement d’inspiration à travers mes réalisations, vous êtes au bon endroit.</p>
   </section>
-
-  <!-- ... (services, réalisations, contact, map, footer) ... -->
 
   <footer>
     <p>&copy; 2025 LTMotors Suspension — Tous droits réservés</p>
@@ -217,11 +203,8 @@
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init();</script>
+  <script src="navbar.js"></script>
   <script>
-    function toggleMenu() {
-      document.getElementById('navLinks').classList.toggle('active');
-    }
-
     const hero = document.getElementById('hero');
     const images = [
       'images/pexels-danbee-29701226.jpg',
