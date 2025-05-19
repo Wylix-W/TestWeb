@@ -46,6 +46,7 @@ canvas#particles {
   display: none;
 }
 
+/* === Liens du menu avec soulignement fluide rouge === */
 .navbar nav a {
   color: white;
   text-decoration: none;
@@ -58,16 +59,19 @@ canvas#particles {
 .navbar nav a::after {
   content: '';
   position: absolute;
-  width: 0;
+  width: 100%;
   height: 2px;
   bottom: -4px;
   left: 0;
   background-color: #d92332;
-  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
 }
 
 .navbar nav a:hover::after {
-  width: 100%;
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 /* === Menu burger pour mobile === */
@@ -106,7 +110,7 @@ body > *:not(canvas) {
   z-index: 1;
 }
 
-/* === Autres styles globaux (à compléter si tu veux) === */
+/* === Autres styles globaux === */
 body {
   font-family: 'Montserrat', sans-serif;
   scroll-behavior: smooth;
