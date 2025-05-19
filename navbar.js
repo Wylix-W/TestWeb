@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         placeholder.innerHTML = data;
 
-        // Script du menu burger
+        // Script menu burger
         const toggleScript = document.createElement("script");
         toggleScript.innerHTML = `
           function toggleMenu() {
@@ -14,6 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         `;
         document.body.appendChild(toggleScript);
+
+        // ✅ Re-forcer le CSS : on ajoute une classe après injection
+        const links = placeholder.querySelectorAll("nav a");
+        links.forEach(link => {
+          link.classList.add("navlink"); // optionnel
+        });
       })
       .catch(err => console.error("Erreur de chargement de la navbar :", err));
   }
