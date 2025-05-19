@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let particles = [];
   let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
   let currentCount = 0;
-  const targetCount = 80; // Moins de particules
+  const targetCount = 80;
 
   function resizeCanvas() {
     width = canvas.width = window.innerWidth;
@@ -21,8 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
       x: Math.random() * width,
       y: Math.random() * height,
       radius: Math.random() * 1.5 + 0.5,
-      speedX: (Math.random() - 0.5) * 2.5, // mouvement plus rapide et aléatoire
-      speedY: (Math.random() - 0.5) * 2.5,
+      speedX: (Math.random() - 0.5) * 0.6, // mouvement fluide
+      speedY: (Math.random() - 0.5) * 0.6,
       alpha: Math.random() * 0.5 + 0.4
     });
   }
@@ -45,22 +45,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const force = Math.max(100 - dist, 0);
       const angle = Math.atan2(dy, dx);
 
-      const fx = Math.cos(angle) * force * 0.02;
-      const fy = Math.sin(angle) * force * 0.02;
+      const fx = Math.cos(angle) * force * 0.015;
+      const fy = Math.sin(angle) * force * 0.015;
 
       p.speedX -= fx;
       p.speedY -= fy;
 
-      // ajout d’un léger bruit pour rendre le mouvement plus organique
-      p.speedX += (Math.random() - 0.5) * 0.3;
-      p.speedY += (Math.random() - 0.5) * 0.3;
-
       p.x += p.speedX;
       p.y += p.speedY;
 
-      p.speedX *= 0.92; // friction ajustée
-      p.speedY *= 0.92;
-
+      // rebond aux bords
       if (p.x < 0 || p.x > width) p.speedX *= -1;
       if (p.y < 0 || p.y > height) p.speedY *= -1;
 
