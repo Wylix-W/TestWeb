@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!canvas) return;
 
   const ctx = canvas.getContext("2d");
+  console.log("✅ contexte 2D OK ?", !!ctx);
   let width, height;
   let particles = [];
   let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
