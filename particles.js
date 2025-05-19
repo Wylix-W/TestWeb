@@ -1,4 +1,3 @@
-console.loooog("test");
 console.log("✅ particles.js chargé !");
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById('particles');
