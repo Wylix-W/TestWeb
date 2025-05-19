@@ -47,7 +47,7 @@ canvas#particles {
 }
 
 /* === Liens du menu avec soulignement fluide rouge === */
-.navbar nav a {
+.navlink {
   color: white;
   text-decoration: none;
   font-weight: 600;
@@ -56,7 +56,7 @@ canvas#particles {
   transition: color 0.3s ease;
 }
 
-.navbar nav a::after {
+.navlink::after {
   content: '';
   position: absolute;
   width: 100%;
@@ -69,7 +69,7 @@ canvas#particles {
   transition: transform 0.3s ease-out;
 }
 
-.navbar nav a:hover::after {
+.navlink:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
