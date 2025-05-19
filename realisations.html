@@ -90,19 +90,7 @@
 </head>
 <body>
   <canvas id="particles"></canvas>
-
-  <!-- ✅ NAVBAR EN DUR -->
-  <div class="navbar">
-    <div class="logo">LTMotors</div>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <nav id="navLinks">
-      <a href="index.html#services">Services</a>
-      <a href="realisations.html">Réalisations</a>
-      <a href="tarifs.html">Tarifs</a>
-      <a href="index.html#contact">Contact</a>
-      <a href="rendez-vous.html">Rendez-vous</a>
-    </nav>
-  </div>
+  <div id="navbar-placeholder"></div>
 
   <h1>Nos Réalisations</h1>
 
@@ -138,11 +126,7 @@
 
   <a class="btn-retour" href="index.html">← Retour à l'accueil</a>
 
+  <script src="navbar.js"></script>
   <script src="particles.js"></script>
-  <script>
-    function toggleMenu() {
-      document.getElementById('navLinks').classList.toggle('active');
-    }
-  </script>
 </body>
 </html>
