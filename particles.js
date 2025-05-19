@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
         x: Math.random() * width,
         y: Math.random() * height,
         radius: Math.random() * 1.5 + 0.5,
-        speedX: Math.random() * 0.6 - 0.3,
-        speedY: Math.random() * 0.6 - 0.3,
+        speedX: Math.random() * 0.5 - 0.25,
+        speedY: Math.random() * 0.5 - 0.25,
         alpha: Math.random() * 0.5 + 0.3
       });
     }
@@ -30,25 +30,16 @@ document.addEventListener("DOMContentLoaded", () => {
   function animateParticles() {
     ctx.clearRect(0, 0, width, height);
 
-    // Dessine le halo lumineux autour de la souris
-    const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 100);
-    gradient.addColorStop(0, 'rgba(255, 47, 47, 0.4)');
-    gradient.addColorStop(1, 'rgba(255, 47, 47, 0)');
-    ctx.fillStyle = gradient;
-    ctx.beginPath();
-    ctx.arc(mouse.x, mouse.y, 100, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Particules
     particles.forEach(p => {
-      let dx = p.x - mouse.x;
-      let dy = p.y - mouse.y;
+      let dx = mouse.x - p.x;
+      let dy = mouse.y - p.y;
       let dist = Math.sqrt(dx * dx + dy * dy);
-      let force = Math.max(120 - dist, 0);
+      let force = Math.max(100 - dist, 0); // zone d'effet
       let angle = Math.atan2(dy, dx);
-      let fx = Math.cos(angle) * force * 0.015;
-      let fy = Math.sin(angle) * force * 0.015;
+      let fx = Math.cos(angle) * force * 0.02;
+      let fy = Math.sin(angle) * force * 0.02;
 
+      // FUITE : on inverse la poussée
       p.speedX -= fx;
       p.speedY -= fy;
 
@@ -72,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener('resize', () => {
     resizeCanvas();
-    createParticles(150); // densité de particules ajustée
+    createParticles(300); // densité boostée ici 💨
   });
 
   window.addEventListener('mousemove', (e) => {
@@ -81,6 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   resizeCanvas();
-  createParticles(150);
+  createParticles(300); // densité boostée ici 💨
   animateParticles();
 });
