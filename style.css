@@ -13,17 +13,14 @@ canvas#particles {
   top: 0;
   left: 0;
   width: 100%;
-  max-width: 100vw;
   background: rgba(0, 0, 0, 0.7);
   padding: 1rem 2rem;
-  z-index: 1000;
-
+  z-index: 1000; /* ⬅ Doit être plus haut que tout */
   display: flex;
-  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  overflow-x: hidden;
-  box-sizing: border-box;
+}
+
 }
 
 .navbar .logo {
