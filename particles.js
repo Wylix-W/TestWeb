@@ -3,6 +3,7 @@ console.log("✅ particles.js chargé !");
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById('particles');
   if (!canvas) return;
+
   const ctx = canvas.getContext('2d');
   let width, height;
   let particles = [];
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         radius: Math.random() * 1.5 + 0.5,
         speedX: Math.random() * 0.6 - 0.3,
         speedY: Math.random() * 0.6 - 0.3,
-        alpha: Math.random() * 0.5 + 0.3
+        alpha: Math.random() * 0.5 + 0.4
       });
     }
   }
@@ -30,24 +31,16 @@ document.addEventListener("DOMContentLoaded", () => {
   function animateParticles() {
     ctx.clearRect(0, 0, width, height);
 
-    // Dessine le halo lumineux autour de la souris
-    const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 100);
-    gradient.addColorStop(0, 'rgba(255, 47, 47, 0.4)');
-    gradient.addColorStop(1, 'rgba(255, 47, 47, 0)');
-    ctx.fillStyle = gradient;
-    ctx.beginPath();
-    ctx.arc(mouse.x, mouse.y, 100, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Particules
     particles.forEach(p => {
-      let dx = p.x - mouse.x;
-      let dy = p.y - mouse.y;
-      let dist = Math.sqrt(dx * dx + dy * dy);
-      let force = Math.max(120 - dist, 0);
-      let angle = Math.atan2(dy, dx);
-      let fx = Math.cos(angle) * force * 0.015;
-      let fy = Math.sin(angle) * force * 0.015;
+      const dx = mouse.x - p.x;
+      const dy = mouse.y - p.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const force = Math.max(100 - dist, 0);
+      const angle = Math.atan2(dy, dx);
+
+      // FUITE : on pousse les particules dans la direction opposée à la souris
+      const fx = Math.cos(angle) * force * 0.02;
+      const fy = Math.sin(angle) * force * 0.02;
 
       p.speedX -= fx;
       p.speedY -= fy;
@@ -72,15 +65,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener('resize', () => {
     resizeCanvas();
-    createParticles(150); // densité de particules ajustée
+    createParticles(300);
   });
 
-  window.addEventListener('mousemove', (e) => {
+  window.addEventListener('mousemove', e => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
   });
 
   resizeCanvas();
-  createParticles(150);
+  createParticles(300);
   animateParticles();
 });
