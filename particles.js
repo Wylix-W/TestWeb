@@ -1,11 +1,10 @@
 console.log("✅ particles.js chargé !");
 
 document.addEventListener("DOMContentLoaded", () => {
-  const canvas = document.getElementById("particles");
+  const canvas = document.getElementById('particles');
   if (!canvas) return;
 
-  const ctx = canvas.getContext("2d");
-  console.log("✅ contexte 2D OK ?", !!ctx);
+  const ctx = canvas.getContext('2d');
   let width, height;
   let particles = [];
   let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
@@ -21,54 +20,64 @@ document.addEventListener("DOMContentLoaded", () => {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        radius: Math.random() * 1.8 + 0.5,
-        speedX: Math.random() * 0.5 - 0.25,
-        speedY: Math.random() * 0.5 - 0.25,
-        alpha: Math.random() * 0.5 + 0.3
+        radius: Math.random() * 1.5 + 0.5,
+        speedX: Math.random() * 0.6 - 0.3,
+        speedY: Math.random() * 0.6 - 0.3,
+        alpha: Math.random() * 0.4 + 0.4
       });
     }
   }
 
   function animateParticles() {
     ctx.clearRect(0, 0, width, height);
+
     particles.forEach(p => {
-      // Calcul direction pour FUITE vers l'extérieur
       const dx = mouse.x - p.x;
       const dy = mouse.y - p.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      const force = Math.max(150 - dist, 0);
+      const maxDist = 100;
+      const force = Math.max(maxDist - dist, 0);
       const angle = Math.atan2(dy, dx);
-      const fx = Math.cos(angle) * force * 0.01;
-      const fy = Math.sin(angle) * force * 0.01;
 
+      const fx = Math.cos(angle) * force * 0.02;
+      const fy = Math.sin(angle) * force * 0.02;
+
+      // FUITE : on pousse dans la direction opposée
       p.speedX -= fx;
       p.speedY -= fy;
 
       p.x += p.speedX;
       p.y += p.speedY;
 
-      p.speedX *= 0.9;
-      p.speedY *= 0.9;
+      // friction
+      p.speedX *= 0.95;
+      p.speedY *= 0.95;
 
-      // Bords de l'écran
+      // rebond simple
       if (p.x < 0 || p.x > width) p.speedX *= -1;
       if (p.y < 0 || p.y > height) p.speedY *= -1;
 
+      // draw
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${p.alpha})`;
+      ctx.fillStyle = rgba(255, 255, 255, ${p.alpha});
       ctx.fill();
     });
+
     requestAnimationFrame(animateParticles);
   }
 
-  window.addEventListener("resize", resizeCanvas);
-  window.addEventListener("mousemove", e => {
+  window.addEventListener('resize', () => {
+    resizeCanvas();
+    createParticles(300);
+  });
+
+  window.addEventListener('mousemove', e => {
     mouse.x = e.clientX;
     mouse.y = e.clientY;
   });
 
   resizeCanvas();
-  createParticles(200);
+  createParticles(300);
   animateParticles();
 });
