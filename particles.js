@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let particles = [];
   let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
   let currentCount = 0;
-  const targetCount = 300;
+  const targetCount = 120;
 
   function resizeCanvas() {
     width = canvas.width = window.innerWidth;
