@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let particles = [];
   let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
   let currentCount = 0;
-  const targetCount = 120;
+  const targetCount = 80; // Moins de particules
 
   function resizeCanvas() {
     width = canvas.width = window.innerWidth;
@@ -21,10 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
       x: Math.random() * width,
       y: Math.random() * height,
       radius: Math.random() * 1.5 + 0.5,
-      speedX: Math.random() * 0.6 - 0.3,
-      speedY: Math.random() * 0.6 - 0.3,
-      baseSpeedX: Math.random() * 0.6 - 0.3, // pour oscillation
-      baseSpeedY: Math.random() * 0.6 - 0.3,
+      speedX: (Math.random() - 0.5) * 2.5, // mouvement plus rapide et aléatoire
+      speedY: (Math.random() - 0.5) * 2.5,
       alpha: Math.random() * 0.5 + 0.4
     });
   }
@@ -53,15 +51,15 @@ document.addEventListener("DOMContentLoaded", () => {
       p.speedX -= fx;
       p.speedY -= fy;
 
-      // Oscillation douce autour de sa vitesse initiale
-      p.speedX += Math.sin(Date.now() * 0.001 + p.x) * 0.01;
-      p.speedY += Math.cos(Date.now() * 0.001 + p.y) * 0.01;
+      // ajout d’un léger bruit pour rendre le mouvement plus organique
+      p.speedX += (Math.random() - 0.5) * 0.3;
+      p.speedY += (Math.random() - 0.5) * 0.3;
 
       p.x += p.speedX;
       p.y += p.speedY;
 
-      p.speedX *= 0.95;
-      p.speedY *= 0.95;
+      p.speedX *= 0.92; // friction ajustée
+      p.speedY *= 0.92;
 
       if (p.x < 0 || p.x > width) p.speedX *= -1;
       if (p.y < 0 || p.y > height) p.speedY *= -1;
@@ -72,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.fill();
     });
 
-    // Lignes entre particules proches
+    // lignes entre particules proches
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         const dx = particles[i].x - particles[j].x;
