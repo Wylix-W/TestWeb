@@ -119,6 +119,7 @@
   <a class="btn-retour" href="index.html">← Retour à l'accueil</a>
 
   <script>
+  window.addEventListener("load", () => {
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
     let width, height;
@@ -183,6 +184,7 @@
     resizeCanvas();
     createParticles(100);
     animateParticles();
-  </script>
+  });
+</script>
 </body>
 </html>
