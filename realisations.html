@@ -13,9 +13,16 @@
       overflow-x: hidden;
       font-family: 'Montserrat', sans-serif;
       color: white;
-      background-repeat: no-repeat;
-      background-blend-mode: screen;
-      transition: background 0.1s linear;
+      background-color: #000;
+    }
+
+    canvas#particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
     }
 
     h1 {
@@ -75,6 +82,8 @@
   </style>
 </head>
 <body>
+  <canvas id="particles"></canvas>
+
   <h1>Nos Réalisations</h1>
 
   <section id="preparation">
@@ -110,31 +119,70 @@
   <a class="btn-retour" href="index.html">← Retour à l'accueil</a>
 
   <script>
-    let mouseX = 50;
-    let mouseY = 50;
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+    let mouse = { x: null, y: null };
 
-    document.addEventListener("mousemove", (e) => {
-      mouseX = (e.clientX / window.innerWidth) * 100;
-      mouseY = (e.clientY / window.innerHeight) * 100;
-    });
-
-    function animateBackground() {
-      const currentX = parseFloat(document.body.dataset.x || 50);
-      const currentY = parseFloat(document.body.dataset.y || 50);
-
-      const lerp = (a, b, t) => a + (b - a) * t;
-      const smoothX = lerp(currentX, mouseX, 0.08);
-      const smoothY = lerp(currentY, mouseY, 0.08);
-
-      document.body.dataset.x = smoothX;
-      document.body.dataset.y = smoothY;
-
-      document.body.style.background = `radial-gradient(circle 150px at ${smoothX}% ${smoothY}%, #ff0000, #1e1e2f),
-                                        radial-gradient(circle 350px at ${smoothX}% ${smoothY}%, rgba(255, 0, 0, 0.2), transparent)`;
-      requestAnimationFrame(animateBackground);
+    function resizeCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
     }
 
-    animateBackground();
+    function createParticles(count) {
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 1.5 + 0.5,
+          speedX: Math.random() * 0.5 - 0.25,
+          speedY: Math.random() * 0.5 - 0.25,
+          alpha: Math.random() * 0.5 + 0.3
+        });
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        let dx = p.x - mouse.x;
+        let dy = p.y - mouse.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        let force = Math.max(100 - dist, 0);
+        let angle = Math.atan2(dy, dx);
+        let fx = Math.cos(angle) * force * 0.02;
+        let fy = Math.sin(angle) * force * 0.02;
+
+        p.speedX -= fx;
+        p.speedY -= fy;
+
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        p.speedX *= 0.95;
+        p.speedY *= 0.95;
+
+        if (p.x < 0 || p.x > width) p.speedX *= -1;
+        if (p.y < 0 || p.y > height) p.speedY *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${p.alpha})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    resizeCanvas();
+    createParticles(100);
+    animateParticles();
   </script>
 </body>
 </html>
