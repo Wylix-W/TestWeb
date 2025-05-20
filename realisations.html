@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Réalisations - LTMotors Suspension</title>
-  <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Anton&display=swap" rel="stylesheet">
   <style>
     html, body {
       margin: 0;
@@ -33,10 +32,35 @@
       z-index: 1;
     }
 
-    h1 {
-      text-align: center;
+    .titre-degrade {
+      background: linear-gradient(90deg, #d92332, #ff7a00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+    }
+
+    .titre-glow {
+      text-shadow: 0 0 8px rgba(255, 47, 47, 0.6), 0 0 15px rgba(255, 47, 47, 0.3);
+    }
+
+    .titre-anton {
+      font-family: 'Anton', sans-serif;
       font-size: 3rem;
-      margin: 6rem auto 2rem;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.8s ease-out forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     section {
@@ -93,12 +117,12 @@
   <canvas id="particles"></canvas>
   <div id="navbar-placeholder"></div>
 
-  <h1 class="carbone-title">Nos Réalisations</h1>
+  <h1 class="titre-degrade titre-glow titre-anton fade-up">Nos Réalisations</h1>
 
   <section id="preparation">
-    <h2>Suspensions Préparation Moto-Cross</h2>
-    <p class="description">Découvrez une sélection de suspensions optimisées pour la compétition, alliant performance, technicité et savoir-faire.</p>
-    <div class="gallery">
+    <h2 class="titre-degrade titre-glow titre-anton fade-up">Suspensions Préparation Moto-Cross</h2>
+    <p class="description fade-up">Découvrez une sélection de suspensions optimisées pour la compétition, alliant performance, technicité et savoir-faire.</p>
+    <div class="gallery fade-up">
       <img src="https://via.placeholder.com/400x250?text=Préparation+1" alt="Préparation 1">
       <img src="https://via.placeholder.com/400x250?text=Préparation+2" alt="Préparation 2">
       <img src="https://via.placeholder.com/400x250?text=Préparation+3" alt="Préparation 3">
@@ -106,9 +130,9 @@
   </section>
 
   <section id="reparation">
-    <h2>Réparation Moto-Cross</h2>
-    <p class="description">Exemples concrets de réparations réalisées avec précision, garantissant sécurité et efficacité sur toutes les pistes.</p>
-    <div class="gallery">
+    <h2 class="titre-degrade titre-glow titre-anton fade-up">Réparation Moto-Cross</h2>
+    <p class="description fade-up">Exemples concrets de réparations réalisées avec précision, garantissant sécurité et efficacité sur toutes les pistes.</p>
+    <div class="gallery fade-up">
       <img src="https://via.placeholder.com/400x250?text=Réparation+1" alt="Réparation 1">
       <img src="https://via.placeholder.com/400x250?text=Réparation+2" alt="Réparation 2">
       <img src="https://via.placeholder.com/400x250?text=Réparation+3" alt="Réparation 3">
@@ -116,9 +140,9 @@
   </section>
 
   <section id="autres">
-    <h2>Autres Services</h2>
-    <p class="description">Quelques visuels supplémentaires illustrant notre gamme étendue de prestations sur mesure.</p>
-    <div class="gallery">
+    <h2 class="titre-degrade titre-glow titre-anton fade-up">Autres Services</h2>
+    <p class="description fade-up">Quelques visuels supplémentaires illustrant notre gamme étendue de prestations sur mesure.</p>
+    <div class="gallery fade-up">
       <img src="https://via.placeholder.com/400x250?text=Autres+1" alt="Autres 1">
       <img src="https://via.placeholder.com/400x250?text=Autres+2" alt="Autres 2">
       <img src="https://via.placeholder.com/400x250?text=Autres+3" alt="Autres 3">
