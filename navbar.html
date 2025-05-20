@@ -1,11 +1,17 @@
 <div class="navbar">
-  <div class="logo">LTMotors</div>
-  <div class="menu-toggle">☰</div>
-  <nav id="navLinks">
-    <a class="navlink" href="index.html#services">Services</a>
-    <a class="navlink" href="realisations.html">Réalisations</a>
-    <a class="navlink" href="tarifs.html">Tarifs</a>
-    <a class="navlink" href="index.html#contact">Contact</a>
-    <a class="navlink" href="rendez-vous.html">Rendez-vous</a>
+  <div class="logo">LT Motors</div>
+  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="realisations.html">Réalisations</a>
+    <a href="tarifs.html">Tarifs</a>
+    <a href="rendez-vous.html">Rendez-vous</a>
   </nav>
 </div>
+
+<script>
+function toggleMenu() {
+  const nav = document.querySelector(".navbar nav");
+  nav.classList.toggle("active");
+}
+</script>
