@@ -1,141 +1,63 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LT Motors Suspension</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LTMotors Suspension</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
   <script src="navbar.js" defer></script>
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-  <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Outfit', sans-serif;
-      background-color: #0f0f0f;
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    header {
-      position: relative;
-      height: 100vh;
-      background: #0f0f0f;
-    }
-
-    #particles-js {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      text-align: center;
-      padding: 0 20px;
-    }
-
-    .hero-content h1 {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .hero-content p {
-      font-size: 1.25rem;
-      max-width: 600px;
-      margin-bottom: 2rem;
-      color: #ccc;
-    }
-
-    .btn-primary {
-      padding: 1rem 2rem;
-      background: linear-gradient(135deg, #ff4e50, #f9d423);
-      border: none;
-      color: white;
-      font-size: 1rem;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-
-    .btn-primary:hover {
-      transform: scale(1.05);
-    }
-
-    section {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 2rem;
-    }
-
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-    }
-
-    .card {
-      background: #1c1c1c;
-      padding: 2rem;
-      border-radius: 20px;
-      text-align: center;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-      transition: transform 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-    }
-  </style>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 <body>
   <div id="navbar-container"></div>
 
-  <header>
-    <div id="particles-js"></div>
+  <header class="hero">
+    <div class="diaporama">
+      <div class="slide active" style="background-image: url('images/pexels-danbee-29701226.jpg');"></div>
+      <div class="slide" style="background-image: url('images/pexels-danbee-29701229.jpg');"></div>
+      <div class="slide" style="background-image: url('images/pexels-daniel-43199-217872.jpg');"></div>
+    </div>
     <div class="hero-content" data-aos="fade-up">
-      <h1>LT Motors Suspension</h1>
-      <p>Spécialiste de la suspension sur-mesure pour véhicules de compétition et de collection</p>
+      <h1>LTMotors Suspension</h1>
+      <p>Préparation & restauration de suspensions haut de gamme</p>
       <a href="realisations.html" class="btn-primary">Voir nos réalisations</a>
     </div>
   </header>
 
-  <section data-aos="fade-up">
+  <section class="services" data-aos="fade-up">
     <h2>Nos Services</h2>
-    <div class="services">
+    <div class="cards">
       <div class="card">
-        <h3>Réglage sur mesure</h3>
-        <p>Optimisez vos performances avec un réglage adapté à votre conduite.</p>
+        <h3>Suspensions sur mesure</h3>
+        <p>Préparées selon vos besoins et votre usage</p>
       </div>
       <div class="card">
-        <h3>Restauration complète</h3>
-        <p>Redonnez vie à vos anciennes suspensions avec des composants modernes.</p>
+        <h3>Entretien expert</h3>
+        <p>Reconditionnement complet avec pièces d’origine</p>
       </div>
       <div class="card">
-        <h3>Suivi personnalisé</h3>
-        <p>Un accompagnement professionnel avant, pendant et après la prestation.</p>
+        <h3>Restauration vintage</h3>
+        <p>Reconstruction de modèles rares pour collection ou compétition</p>
       </div>
     </div>
   </section>
 
   <script>
-    particlesJS.load('particles-js', 'particles.js');
     AOS.init({ once: true });
+
+    const slides = document.querySelectorAll(".slide");
+    let currentSlide = 0;
+
+    function showNextSlide() {
+      slides[currentSlide].classList.remove("active");
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add("active");
+    }
+
+    setInterval(showNextSlide, 5000);
   </script>
 </body>
 </html>
