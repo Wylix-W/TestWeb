@@ -77,23 +77,31 @@ canvas#particles {
 /* === Menu burger pour mobile === */
 .menu-toggle {
   display: none;
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: white;
   cursor: pointer;
 }
 
 @media (max-width: 768px) {
   .navbar nav {
+    display: none;
     position: absolute;
     top: 70px;
     right: 20px;
-    background-color: rgba(0, 0, 0, 0.95);
+    background-color: rgba(0,0,0,0.95);
     flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem 1.5rem;
-    border-radius: 10px;
-    display: none;
+    padding: 1rem;
+    border-radius: 8px;
   }
+
+  .navbar nav.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
 
   .navbar nav.active {
     display: flex;
@@ -168,3 +176,6 @@ body {
     transform: translateY(0);
   }
 }
+
+
+
