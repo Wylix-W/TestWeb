@@ -63,15 +63,13 @@ canvas#particles {
   bottom: -4px;
   left: 0;
   background-color: #d92332;
-  transform: scaleX(0);
-  transform-origin: bottom right;
-  transition: transform 0.3s ease-out;
+  transition: width 0.3s;
 }
 
 .navbar nav a:hover::after {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+  width: 100%;
 }
+
 
 /* === Menu burger pour mobile === */
 .menu-toggle {
