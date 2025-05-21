@@ -46,13 +46,9 @@ canvas#particles {
   display: none;
 }
 
+/* Effet soulignement liens menu principal */
 .navbar nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
   position: relative;
-  white-space: nowrap;
-  transition: color 0.3s ease;
 }
 
 .navbar nav a::after {
@@ -63,20 +59,23 @@ canvas#particles {
   bottom: -4px;
   left: 0;
   background-color: #d92332;
-  transition: width 0.3s;
+  transition: width 0.3s ease;
 }
 
 .navbar nav a:hover::after {
   width: 100%;
 }
 
-
-/* === Menu burger pour mobile === */
+/* Menu burger */
 .menu-toggle {
-  display: none;
   font-size: 2rem;
   color: white;
   cursor: pointer;
+  transition: color 0.3s;
+}
+
+.menu-toggle:hover {
+  color: #d92332; /* Couleur rouge au survol du burger */
 }
 
 @media (max-width: 768px) {
