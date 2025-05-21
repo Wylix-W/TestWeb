@@ -61,3 +61,26 @@
       .menu-toggle {
         display: block;
       }
+
+     /* ——————————————————————
+   Forcer le switch vers le burger
+   dès que l’écran est « trop petit »
+———————————————————————— */
+@media (max-width: 900px) {
+  /* on cache toujours le menu classique */
+  .navbar nav {
+    display: none !important;
+  }
+  /* on affiche le burger */
+  .menu-toggle {
+    display: block !important;
+  }
+  /* et lorsqu’il est actif, on déroule quand même le nav */
+  .navbar nav.active {
+    display: flex !important;
+    flex-direction: column;
+    top: 70px;    /* ou la valeur que tu avais */
+    right: 20px;  /* idem */
+  }
+}
+
