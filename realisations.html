@@ -129,5 +129,24 @@
 
   <script src="navbar.js"></script>
   <script src="particles.js"></script>
+  <script>
+  fetch('navbar.html')
+    .then(response => response.text())
+    .then(data => {
+      const placeholder = document.getElementById("navbar-placeholder");
+      placeholder.innerHTML = data;
+
+      // Ajout du comportement menu burger une fois chargé
+      const toggle = document.querySelector(".menu-toggle");
+      const nav = document.querySelector(".navbar nav");
+      if (toggle && nav) {
+        toggle.addEventListener("click", () => {
+          nav.classList.toggle("active");
+        });
+      }
+    })
+    .catch(err => console.error("Erreur de chargement de la navbar :", err));
+</script>
+
 </body>
 </html>
