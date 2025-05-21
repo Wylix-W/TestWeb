@@ -1,8 +1,9 @@
-/* === Navbar par défaut (desktop) === */
+/* === Navbar desktop (≥769px) === */
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
   width: 100%;
   background: rgba(0,0,0,0.7);
   display: flex;
@@ -24,19 +25,19 @@
 }
 
 .navbar nav a {
+  position: relative;
   color: white;
   text-decoration: none;
   font-weight: 600;
-  position: relative;
 }
 
 .navbar nav a::after {
   content: '';
   position: absolute;
-  width: 0;
-  height: 2px;
   bottom: -4px;
   left: 0;
+  width: 0;
+  height: 2px;
   background-color: #d92332;
   transition: width 0.3s ease;
 }
@@ -45,7 +46,7 @@
   width: 100%;
 }
 
-/* === Bouton burger caché par défaut === */
+/* === Burger hidden desktop === */
 .menu-toggle {
   display: none;
   font-size: 1.8rem;
@@ -58,15 +59,15 @@
   color: #d92332;
 }
 
-/* === Basculer en “mobile” dès que l’écran est ≤ 900px === */
-@media (max-width: 900px) {
-  /* on masque toujours le menu desktop */
+/* === Mode mobile (≤768px) === */
+@media (max-width: 768px) {
+  /* on cache les liens classiques */
   .navbar nav {
     display: none !important;
     position: absolute;
     top: 70px;
     right: 20px;
-    background-color: rgba(0,0,0,0.95);
+    background: rgba(0,0,0,0.95);
     flex-direction: column;
     align-items: flex-start;
     padding: 1rem 1.5rem;
