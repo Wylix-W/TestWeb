@@ -1,6 +1,6 @@
 <div class="navbar">
   <div class="logo">LT Motors</div>
-  <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  <div class="menu-toggle">☰</div>
   <nav>
     <a href="index.html">Accueil</a>
     <a href="realisations.html">Réalisations</a>
@@ -10,8 +10,13 @@
 </div>
 
 <script>
-function toggleMenu() {
-  const nav = document.querySelector(".navbar nav");
-  nav.classList.toggle("active");
-}
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.querySelector(".menu-toggle");
+    const nav = document.querySelector(".navbar nav");
+    if (toggle && nav) {
+      toggle.addEventListener("click", () => {
+        nav.classList.toggle("active");
+      });
+    }
+  });
 </script>
