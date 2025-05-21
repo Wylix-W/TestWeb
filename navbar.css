@@ -1,0 +1,101 @@
+/* === Navbar principale === */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100vw;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 1rem 2rem;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  white-space: nowrap;
+}
+
+.navbar nav {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.navbar nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* Effet soulignement liens menu principal */
+.navbar nav a {
+  position: relative;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #d92332;
+  transition: width 0.3s ease;
+}
+
+.navbar nav a:hover::after {
+  width: 100%;
+}
+
+/* Menu burger (icône ☰) */
+.menu-toggle {
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  display: none;
+  transition: color 0.3s;
+}
+
+.menu-toggle:hover {
+  color: #d92332;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+  .navbar nav {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background-color: rgba(0,0,0,0.95);
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .navbar nav.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .navbar nav a {
+    margin-bottom: 1rem;
+  }
+
+  .navbar nav a:last-child {
+    margin-bottom: 0;
+  }
+}
