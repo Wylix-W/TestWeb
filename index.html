@@ -103,7 +103,7 @@
   </style>
 </head>
 <body>
-  <div id="navbar-container"></div>
+  <div id="navbar-placeholder"></div>
 
   <header class="hero">
     <div class="diaporama">
@@ -151,6 +151,15 @@
     }
 
     setInterval(showNextSlide, 6000);
+  </script>
+  <script>
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        const placeholder = document.getElementById("navbar-placeholder");
+        placeholder.innerHTML = data;
+      })
+      .catch(err => console.error("Erreur de chargement de la navbar :", err));
   </script>
 </body>
 </html>
