@@ -7,13 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         placeholder.innerHTML = data;
 
-        // ✅ Connecter le bouton burger au menu
+        // Connecte proprement le bouton burger au menu
         const toggle = placeholder.querySelector(".menu-toggle");
-        const navLinks = placeholder.querySelector("#navLinks");
+        const nav = placeholder.querySelector("#navLinks");
 
-        if (toggle && navLinks) {
+        if (toggle && nav) {
           toggle.addEventListener("click", () => {
-            navLinks.classList.toggle("active");
+            nav.classList.toggle("active");
           });
         }
       })
