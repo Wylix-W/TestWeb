@@ -73,3 +73,88 @@ body {
     transform: translateY(0);
   }
 }
+
+/* 1) Typography et spacing fluides */
+:root {
+  /* base font-size pour clamp() */
+  font-size: 16px;
+}
+
+/* Header full-screen */
+header#hero {
+  padding: clamp(2rem, 5vw, 6rem) 1rem;
+}
+header#hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: clamp(1rem, 2vw, 2rem);
+}
+header#hero p {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+.cta-btn {
+  padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+}
+
+/* 2) Containers et sections */
+section {
+  padding: clamp(2rem, 5vw, 5rem) 2vw;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* 3) Navbar – font-size et spacing fluides */
+.navbar .logo {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+}
+.navbar nav a {
+  font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+}
+
+/* 4) Breakpoint tablette (entre desktop et mobile) */
+@media (max-width: 1024px) {
+  /* Réduire les gaps dans la navbar */
+  .navbar nav {
+    gap: 1rem;
+  }
+  /* Réduire la hauteur du header */
+  header#hero {
+    padding: clamp(1.5rem, 4vw, 4rem) 1rem;
+  }
+}
+
+/* 5) Breakpoint mobile (< 768px) */
+@media (max-width: 768px) {
+  /* Menu burger déjà en place */
+  .navbar .logo {
+    /* peut être centré si tu le souhaites */
+    /* text-align: center; width: 100%; */
+  }
+  .navbar nav a {
+    margin-bottom: 1rem;
+  }
+  .navbar nav {
+    right: 1rem;
+    padding: 1rem;
+  }
+
+  /* Gallery : 1 colonne sur très petit écran */
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 6) Breakpoint très petit (< 480px) */
+@media (max-width: 480px) {
+  header#hero h1 {
+    font-size: clamp(1.5rem, 6vw, 2.5rem);
+  }
+  .cta-btn {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+
