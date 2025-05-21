@@ -1,3 +1,14 @@
+/* === Mode “trop petit pour tous les liens” === */
+.navbar.mobile-size nav {
+  display: none !important;
+}
+.navbar.mobile-size .menu-toggle {
+  display: block !important;
+}
+.navbar.mobile-size nav.active {
+  display: flex !important;
+}
+
 /* === Navbar desktop (≥769px) === */
 .navbar {
   position: fixed;
