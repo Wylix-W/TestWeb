@@ -1,86 +1,85 @@
- .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0,0,0,0.7);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      z-index: 1000;
-    }
-    .navbar .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: white;
-    }
-    .navbar nav {
-      display: flex;
-      gap: 1.5rem;
-    }
-    .navbar nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      position: relative;
-    }
-    .navbar nav a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -4px;
-      left: 0;
-      background-color: #d92332;
-      transition: 0.3s;
-    }
-    .navbar nav a:hover::after {
-      width: 100%;
-    }
-    .menu-toggle {
-      display: none;
-      font-size: 1.8rem;
-      color: white;
-      cursor: pointer;
-    }
-    @media (max-width: 768px) {
-      .navbar nav {
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        background-color: rgba(0,0,0,0.95);
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem 1.5rem;
-        border-radius: 10px;
-        display: none;
-      }
-      .navbar nav.active {
-        display: flex;
-      }
-      .menu-toggle {
-        display: block;
-      }
+/* === Navbar par défaut (desktop) === */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  z-index: 1000;
+}
 
-     /* ——————————————————————
-   Forcer le switch vers le burger
-   dès que l’écran est « trop petit »
-———————————————————————— */
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.navbar nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.navbar nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+}
+
+.navbar nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #d92332;
+  transition: width 0.3s ease;
+}
+
+.navbar nav a:hover::after {
+  width: 100%;
+}
+
+/* === Bouton burger caché par défaut === */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.menu-toggle:hover {
+  color: #d92332;
+}
+
+/* === Basculer en “mobile” dès que l’écran est ≤ 900px === */
 @media (max-width: 900px) {
-  /* on cache toujours le menu classique */
+  /* on masque toujours le menu desktop */
   .navbar nav {
     display: none !important;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background-color: rgba(0,0,0,0.95);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
   }
+
   /* on affiche le burger */
   .menu-toggle {
     display: block !important;
   }
-  /* et lorsqu’il est actif, on déroule quand même le nav */
+
+  /* quand on clique, on déroule le menu */
   .navbar nav.active {
     display: flex !important;
-    flex-direction: column;
-    top: 70px;    /* ou la valeur que tu avais */
-    right: 20px;  /* idem */
   }
 }
-
